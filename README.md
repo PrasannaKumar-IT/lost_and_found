@@ -16,7 +16,7 @@ A web-based **Lost & Found Tracker** application built using **Flask**, designed
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 | Technology     | Purpose                          |
 |----------------|----------------------------------|
