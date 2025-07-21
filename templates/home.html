@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}All Reported Items{% endblock %}
+{% block content %}
+<style>
+    img { height: 300px; object-fit: cover; }
+  </style>
+<div class="container mt-4">
+        <h2 class="mb-4">Reported Lost & Found Items</h2>
+        <div class="mb-3">
+            <a href="/" class="btn btn-secondary btn-sm">All</a>
+            <a href="/?type=lost" class="btn btn-danger btn-sm">Lost</a>
+            <a href="/?type=found" class="btn btn-success btn-sm">Found</a>
+            <a href="/report" class="btn btn-primary btn-sm float-end">+ Report Item</a>
+        </div>
+        <div class="row">
+            {% for item in items %}
+        <div class="col-md-4 mb-4">
+                <div class="card">
+                    {% if item.image_filename %}
+<img src="{{ url_for('static', filename='uploads/' + item.image_filename) }}" class="card-img-top" alt="Item Image">
+{% endif %}
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{item.item_name}}</h5>
+                        <p class="card-text text-muted">{{item.item_type|capitalize}} | {{item.location}}</p>
+                        <p class="card-text"><small class="text-muted">Reported on {{ item.date_reported.strftime('%Y-%m-%d') }}</small></p>
+                        <a href="{{ url_for('item_detail', item_id=item.id) }}" class="btn btn-outline-primary btn-sm mt-2">View Details</a>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
